@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Multi-file class diagram">
+  <ClassDiagramComponents>
+    <Class name="Empleado" package="herencia" visibility="public" xPosition="196.0" yPosition="36.0">
+      <Fields>
+        <Field name="ANO_ACTUAL" type="int" visibility="private"/>
+        <Field name="nombre" type="String" visibility="protected"/>
+        <Field name="anoIngreso" type="int" visibility="protected"/>
+        <Field name="salarioBase" type="double" visibility="protected"/>
+        <Field name="anosEmpresa" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="int" name="anoIngreso"/>
+          <Argument type="double" name="salarioBase"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="cambiarNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="calcularAnosEmpresa" returnType="void" visibility="public"/>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="getAnoIngreso" returnType="int" visibility="public"/>
+        <Method name="setAnoIngreso" returnType="void" visibility="public">
+          <Argument type="int" name="anoIngreso"/>
+        </Method>
+        <Method name="getSalarioBase" returnType="double" visibility="public"/>
+        <Method name="setSalarioBase" returnType="void" visibility="public">
+          <Argument type="double" name="salarioBase"/>
+        </Method>
+        <Method name="getAnosEmpresa" returnType="int" visibility="public"/>
+        <Method name="setAnosEmpresa" returnType="void" visibility="public">
+          <Argument type="int" name="anosEmpresa"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Gerente" package="herencia" visibility="public" xPosition="142.0" yPosition="488.0">
+      <Fields>
+        <Field name="bonificacion" type="double" visibility="private"/>
+        <Field name="salarioFinal" type="double" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="double" name="bonificacion"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="int" name="anoIngreso"/>
+          <Argument type="double" name="salarioBase"/>
+          <Argument type="double" name="bonificacion"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="sumarBonificacion" returnType="void" visibility="public">
+          <Argument type="double" name="bonificacion"/>
+        </Method>
+        <Method name="calcularSalarioFinal" returnType="void" visibility="public"/>
+        <Method name="getBonificacion" returnType="double" visibility="public"/>
+        <Method name="setBonificacion" returnType="void" visibility="public">
+          <Argument type="double" name="bonificacion"/>
+        </Method>
+        <Method name="getSalarioFinal" returnType="double" visibility="public"/>
+        <Method name="setSalarioFinal" returnType="void" visibility="public">
+          <Argument type="double" name="salarioFinal"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Vendedor" package="herencia" visibility="public" xPosition="696.0" yPosition="95.0">
+      <Fields>
+        <Field name="ventas" type="double" visibility="protected"/>
+        <Field name="salarioFinal" type="double" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="int" name="anoIngreso"/>
+          <Argument type="double" name="salarioBase"/>
+          <Argument type="double" name="ventas"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="sumarVentas" returnType="void" visibility="public">
+          <Argument type="double" name="ventas"/>
+        </Method>
+        <Method name="calcularSalarioFinal" returnType="void" visibility="public"/>
+        <Method name="getVentas" returnType="double" visibility="public"/>
+        <Method name="setVentas" returnType="void" visibility="public">
+          <Argument type="double" name="ventas"/>
+        </Method>
+        <Method name="getSalarioFinal" returnType="double" visibility="public"/>
+        <Method name="setSalarioFinal" returnType="void" visibility="public">
+          <Argument type="double" name="salarioFinal"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="herencia.Vendedor" target="herencia.Empleado"/>
+    <IsRelation name="is" source="herencia.Gerente" target="herencia.Empleado"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
