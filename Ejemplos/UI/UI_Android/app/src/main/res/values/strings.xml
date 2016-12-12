@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Lab 2 Resolved</string>
+
+    <string name="name_hint">Nombre</string>
+
+    <string name="phone_hint">Telefono</string>
+
+    <string name="clear_button_text">Limpiar</string>
+
+    <string name="accept_button_text">Aceptar</string>
+
+
+    <string-array name="genders_array">
+        <item>Masculino</item>
+        <item>Femenino</item>
+    </string-array>
+
+</resources>
