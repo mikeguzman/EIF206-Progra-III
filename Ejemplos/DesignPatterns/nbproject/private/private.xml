@@ -3,10 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/mguzmana/Documents/projects/una/progra-III/Ejemplos/POO/DesignPatterns/src/una/design/pattern/singleton/MakeACaptain.java</file>
-            <file>file:/Users/mguzmana/Documents/projects/una/progra-III/Ejemplos/POO/DesignPatterns/src/una/design/pattern/template/ComputerScience.java</file>
-            <file>file:/Users/mguzmana/Documents/projects/una/progra-III/Ejemplos/POO/DesignPatterns/src/una/design/pattern/template/BasicEngineering.java</file>
-            <file>file:/Users/mguzmana/Documents/projects/una/progra-III/Ejemplos/POO/DesignPatterns/src/una/design/pattern/template/Electronics.java</file>
+            <file>file:/Users/mguzmana/Documents/projects/una/progra-III/Ejemplos/DesignPatterns/src/una/design/pattern/practicas/ImpresoraAdicional.java</file>
+            <file>file:/Users/mguzmana/Documents/projects/una/progra-III/Ejemplos/DesignPatterns/test/test/una/design/pattern/practicas/PracticasJUnitTest.java</file>
+            <file>file:/Users/mguzmana/Documents/projects/una/progra-III/Ejemplos/DesignPatterns/src/una/design/pattern/practicas/ImpresoraNormal.java</file>
+            <file>file:/Users/mguzmana/Documents/projects/una/progra-III/Ejemplos/DesignPatterns/src/una/design/pattern/practicas/Impresora.java</file>
+            <file>file:/Users/mguzmana/Documents/projects/una/progra-III/Ejemplos/DesignPatterns/src/una/design/pattern/practicas/FachadaImpresora.java</file>
+            <file>file:/Users/mguzmana/Documents/projects/una/progra-III/Ejemplos/DesignPatterns/src/una/design/pattern/practicas/ImpresoraDemo.java</file>
         </group>
     </open-files>
 </project-private>
