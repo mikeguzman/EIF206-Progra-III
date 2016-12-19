@@ -22,7 +22,7 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import java.io.IOException;
 import javax.swing.SwingUtilities;
-import una.design.patterns.view.StudentView;
+import una.design.patterns.view.StudentListView;
 
 /**
  * Swing MVC Example
@@ -60,6 +60,6 @@ public class SwingMVCExample {
      * @throws Exception
      */
     public static void createAndShowGUI() throws Exception {
-        StudentView studentView = new StudentView();
+        StudentListView studentListView = new StudentListView();
     }
 }
