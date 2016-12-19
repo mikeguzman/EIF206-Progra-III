@@ -36,7 +36,7 @@ import org.junit.Before;
  *
  * @author mguzmana
  */
-public class StudentJUnitTest {
+public class StudentListViewJUnitTest {
 
     private FrameFixture window;
     private JPanelFixture ctrlPanel;
@@ -44,7 +44,7 @@ public class StudentJUnitTest {
     private JScrollPaneFixture scrollPanel;
     private JTableFixture mainTable;
 
-    public StudentJUnitTest() {
+    public StudentListViewJUnitTest() {
     }
 
     @Before
