@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
+import una.design.patterns.Constants;
 import una.design.patterns.model.Student;
 
 /**
@@ -71,11 +72,10 @@ public class StudentService {
         // Library Jackson parse JSon
         // http://wiki.fasterxml.com/JacksonHome
         Student[] students = null;
-        final String FILENAME = "data.json";
 
         ObjectMapper mapper = new ObjectMapper();
         // Convert JSON string from file to Object
-        students = mapper.readValue(new File(FILENAME), Student[].class);
+        students = mapper.readValue(new File(Constants.FILENAME), Student[].class);
 
         return students;
     }
