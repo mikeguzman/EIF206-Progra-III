@@ -20,7 +20,7 @@ package test.ac.cr.una.backend;
 
 import ac.cr.una.backend.dao.StudentDAO;
 import ac.cr.una.backend.dao.StudentDAOHibernateImpl;
-import ac.cr.una.backend.dao.StudentDAOJdbc;
+import ac.cr.una.backend.dao.StudentDAOJdbcImpl;
 import ac.cr.una.backend.model.Student;
 import ac.cr.una.backend.service.StudentService;
 import ac.cr.una.backend.service.StudentServiceImpl;
@@ -66,7 +66,7 @@ public class StudentServiceTest {
 
     @Test
     public void testFindByIdJdbc() {
-        studentDAO = mock(StudentDAOJdbc.class);
+        studentDAO = mock(StudentDAOJdbcImpl.class);
         studentService = new StudentServiceImpl(studentDAO);
 
         Student student = new Student();
@@ -109,7 +109,7 @@ public class StudentServiceTest {
 
     @Test
     public void testSaveJdbc() {
-        studentDAO = mock(StudentDAOJdbc.class);
+        studentDAO = mock(StudentDAOJdbcImpl.class);
         studentService = new StudentServiceImpl(studentDAO);
 
         Student student = new Student();

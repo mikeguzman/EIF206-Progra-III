@@ -30,12 +30,12 @@ import java.util.logging.Logger;
  *
  * @author mguzmana
  */
-public class StudentDAOJdbc implements StudentDAO {
+public class StudentDAOJdbcImpl implements StudentDAO {
 
     private Connection dbConnection = null;
     private Statement statement = null;
 
-    public StudentDAOJdbc() throws SQLException {
+    public StudentDAOJdbcImpl() throws SQLException {
         dbConnection = JdbcUtil.getDBConnection();
         statement = (Statement) dbConnection.createStatement();
     }
@@ -62,14 +62,14 @@ public class StudentDAOJdbc implements StudentDAO {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(StudentDAOJdbc.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentDAOJdbcImpl.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
 
             if (statement != null) {
                 try {
                     statement.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(StudentDAOJdbc.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(StudentDAOJdbcImpl.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
@@ -77,7 +77,7 @@ public class StudentDAOJdbc implements StudentDAO {
                 try {
                     dbConnection.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(StudentDAOJdbc.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(StudentDAOJdbcImpl.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
@@ -99,14 +99,14 @@ public class StudentDAOJdbc implements StudentDAO {
             statement.executeUpdate(insertTableSQL);
 
         } catch (SQLException ex) {
-            Logger.getLogger(StudentDAOJdbc.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentDAOJdbcImpl.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
 
             if (statement != null) {
                 try {
                     statement.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(StudentDAOJdbc.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(StudentDAOJdbcImpl.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
@@ -114,7 +114,7 @@ public class StudentDAOJdbc implements StudentDAO {
                 try {
                     dbConnection.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(StudentDAOJdbc.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(StudentDAOJdbcImpl.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
