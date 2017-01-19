@@ -12,5 +12,7 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
         <mapping class="ac.cr.una.backend.model.Student"></mapping>
+        <mapping class="ac.cr.una.backend.model.Empleado"></mapping>
+        <mapping class="ac.cr.una.backend.model.EmpleadoEmail"></mapping>
     </session-factory>
 </hibernate-configuration>

@@ -43,7 +43,8 @@ public class StudentDAOJdbcImpl implements StudentDAO {
     @Override
     public Student findById(int id) {
         Student student = null;
-        String selectTableSQL = "SELECT ID, NAME, COURSE, RATING from STUDENT";
+        String selectTableSQL = "SELECT ID, NAME, COURSE, RATING from STUDENT "
+                + "WHERE ID=" + id;
 
         try {
             // execute select SQL stetement
