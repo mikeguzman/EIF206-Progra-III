@@ -33,7 +33,7 @@ public class StudentDAOHibernateImpl implements StudentDAO {
     @Override
     public Student findById(int id) {
         Student student = null;
-        Query query = session.createQuery("from student where id = :id ");
+        Query query = session.createQuery("from Student where id = :id ");
         query.setParameter("id", id);
 
         if (query.list().size() > 0) {
