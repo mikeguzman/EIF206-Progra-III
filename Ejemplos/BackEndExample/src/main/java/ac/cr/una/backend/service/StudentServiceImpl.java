@@ -20,6 +20,7 @@ package ac.cr.una.backend.service;
 
 import ac.cr.una.backend.dao.StudentDAO;
 import ac.cr.una.backend.model.Student;
+import java.util.List;
 
 /**
  *
@@ -42,8 +43,23 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public List<Student> findAll() {
+        return studentDAO.findAll();
+    }
+
+    @Override
     public Student save(Student student) {
         return studentDAO.save(student);
+    }
+
+    @Override
+    public boolean delete(int id) {
+        return studentDAO.delete(id);
+    }
+
+    @Override
+    public Student update(Student student) {
+        return studentDAO.update(student);
     }
 
     public StudentDAO getStudentDAO() {

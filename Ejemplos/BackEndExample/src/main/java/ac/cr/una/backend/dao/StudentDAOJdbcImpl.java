@@ -23,6 +23,8 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -123,6 +125,97 @@ public class StudentDAOJdbcImpl implements StudentDAO {
 
         return student;
 
+    }
+
+    @Override
+    public List<Student> findAll() {
+        List<Student> studentList = null;
+        String selectTableSQL = "SELECT ID, NAME, COURSE, RATING from STUDENT";
+
+        try {
+            // execute select SQL stetement
+            ResultSet rs = statement.executeQuery(selectTableSQL);
+
+            if (rs != null) {
+                studentList = new ArrayList<>();
+                while (rs.next()) {
+                    Student student = new Student();
+
+                    student.setId(rs.getInt("ID"));
+                    student.setName(rs.getString("NAME"));
+                    student.setCourse(rs.getString("COURSE"));
+                    student.setRating(rs.getString("RATING"));
+
+                    studentList.add(student);
+
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDAOJdbcImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StudentDAOJdbcImpl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            if (dbConnection != null) {
+                try {
+                    dbConnection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StudentDAOJdbcImpl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+
+        return studentList;
+
+    }
+
+    @Override
+    public boolean delete(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Student update(Student student) {
+        String updateTableSQL = "UPDATE STUDENT"
+                + "(NAME, COURSE, RATING) " + "VALUES"
+                + "('" + student.getName() + "','"
+                + student.getCourse() + "','" + student.getRating() + "') WHERE (id ='" + student.getId() + "'";
+
+        try {
+            // execute insert SQL stetement
+            statement.executeUpdate(updateTableSQL);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDAOJdbcImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StudentDAOJdbcImpl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            if (dbConnection != null) {
+                try {
+                    dbConnection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StudentDAOJdbcImpl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+
+        return student;
     }
 
 }

@@ -23,10 +23,15 @@ import ac.cr.una.backend.dao.StudentDAOHibernateImpl;
 import ac.cr.una.backend.model.Student;
 import ac.cr.una.backend.service.StudentService;
 import ac.cr.una.backend.service.StudentServiceImpl;
+import java.util.List;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
@@ -36,13 +41,12 @@ import javax.ws.rs.core.MediaType;
  *
  * @author mguzmana
  */
-@Path("student")
+@Path("students")
 public class StudentWebservice {
 
     private StudentDAO studentDAO;
     private StudentService studentService;
-    private Student student = null;
-    
+
     @Context
     private UriInfo context;
 
@@ -53,19 +57,97 @@ public class StudentWebservice {
     }
 
     /**
-     * Retrieves StudentWebservice
+     * Retrieves All the Students
+     *
+     * @return Student
+     */
+    @GET
+    @Path("/")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Student> getAllStudents() {
+        List<Student> studentList = null;
+        studentDAO = new StudentDAOHibernateImpl();
+        studentService = new StudentServiceImpl(studentDAO);
+
+        studentList = studentService.findAll();
+
+        return studentList;
+    }
+
+    /**
+     * Retrieves only one student
+     *
      * @param id
      * @return Student
      */
     @GET
-    @Path("/get/{id}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Student getStudents(@PathParam("id") int id) {
+        Student student = null;
         studentDAO = new StudentDAOHibernateImpl();
         studentService = new StudentServiceImpl(studentDAO);
-        
+
         student = studentService.findById(id);
-        
+
+        return student;
+    }
+
+    /**
+     * Create a new Student
+     *
+     * @param student
+     * @return student
+     */
+    @POST
+    @Path("/")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Student createStudent(Student student) {
+
+        studentDAO = new StudentDAOHibernateImpl();
+        studentService = new StudentServiceImpl(studentDAO);
+
+        student = studentService.save(student);
+
+        return student;
+    }
+
+    /**
+     * Delete a new Student
+     *
+     * @param id
+     * @return student
+     */
+    @DELETE
+    @Path("/{id}")
+    public boolean deleteStudent(@PathParam("id") int id) {
+        boolean result;
+        studentDAO = new StudentDAOHibernateImpl();
+        studentService = new StudentServiceImpl(studentDAO);
+
+        result = studentService.delete(id);
+
+        return result;
+    }
+
+    /**
+     * Update a Student
+     *
+     * @param student
+     * @return student
+     */
+    @PUT
+    @Path("/")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Student updateStudent(Student student) {
+
+        studentDAO = new StudentDAOHibernateImpl();
+        studentService = new StudentServiceImpl(studentDAO);
+
+        student = studentService.update(student);
+
         return student;
     }
 

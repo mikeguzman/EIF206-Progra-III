@@ -19,6 +19,8 @@
 package ac.cr.una.backend.dao;
 
 import ac.cr.una.backend.model.Student;
+import java.util.ArrayList;
+import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -47,6 +49,38 @@ public class StudentDAOHibernateImpl implements StudentDAO {
     public Student save(Student student) {
         session.beginTransaction();
         session.save(student);
+        session.getTransaction().commit();
+
+        return student;
+    }
+
+    @Override
+    public List<Student> findAll() {
+        List<Student> studentList = new ArrayList<>();
+
+        studentList = session.createCriteria(Student.class).list();
+
+        return studentList;
+    }
+
+    @Override
+    public boolean delete(int id) {
+        boolean isDeleted = false;
+        Student student = null;
+
+        session.beginTransaction();
+        student = (Student) session.get(Student.class, id);
+        session.delete(student);
+        isDeleted = true;
+        session.getTransaction().commit();
+
+        return isDeleted;
+    }
+
+    @Override
+    public Student update(Student student) {
+        session.beginTransaction();
+        session.update(student);
         session.getTransaction().commit();
 
         return student;

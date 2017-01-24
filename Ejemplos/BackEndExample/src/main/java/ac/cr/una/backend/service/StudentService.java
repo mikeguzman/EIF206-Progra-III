@@ -19,6 +19,7 @@
 package ac.cr.una.backend.service;
 
 import ac.cr.una.backend.model.Student;
+import java.util.List;
 
 /**
  *
@@ -27,5 +28,8 @@ import ac.cr.una.backend.model.Student;
 public interface StudentService {
 
     public Student findById(int id);
+    public List<Student> findAll();
     public Student save(Student student);
+    public Student update(Student student);
+    public boolean delete(int id);
 }

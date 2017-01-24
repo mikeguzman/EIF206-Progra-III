@@ -19,6 +19,7 @@
 package ac.cr.una.backend.dao;
 
 import ac.cr.una.backend.model.Student;
+import java.util.List;
 
 /**
  *
@@ -28,5 +29,7 @@ public interface StudentDAO {
 
     public Student findById (int id);
     public Student save(Student student);
-
+    public Student update(Student student);
+    public List<Student> findAll ();
+    public boolean delete(int id); 
 }
