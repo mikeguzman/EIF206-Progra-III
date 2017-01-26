@@ -27,7 +27,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import ac.cr.una.frontend.Constants;
+import ac.cr.una.frontend.model.Student;
 import ac.cr.una.frontend.service.StudentService;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.AbstractButton;
+import javax.swing.JButton;
 
 /**
  * Student Controller
@@ -40,37 +46,71 @@ public class StudentController implements ActionListener {
     private DefaultTableModel tableModel;
     private StudentService studentService;
     private Object[][] students;
+    private JButton filterButton;
+    private JButton addStudentButton;
 
     /**
      * Main Constructor
      *
      * @param searchTermTextField
      * @param tableModel
-     * 
+     *
      * @throws com.fasterxml.jackson.core.JsonGenerationException
      * @throws com.fasterxml.jackson.databind.JsonMappingException
      * @throws java.io.IOException
      */
     public StudentController(JTextField searchTermTextField,
-            DefaultTableModel tableModel) throws JsonGenerationException,
-            JsonMappingException, IOException {
+            DefaultTableModel tableModel, JButton filterButton,
+            JButton addStudentButton) throws JsonGenerationException,
+            JsonMappingException, IOException, Exception {
+
         super();
         studentService = new StudentService();
         students = studentService.loadStudentsObjWrapper();
 
         this.searchTermTextField = searchTermTextField;
         this.tableModel = tableModel;
+        this.filterButton = filterButton;
+        this.addStudentButton = addStudentButton;
 
         // Load the table with the list of students
         tableModel.setDataVector(students, Constants.TABLE_HEADER);
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        String searchTerm = searchTermTextField.getText();
+    public void actionPerformed(ActionEvent actionEvent) {
+        if (filterButton.equals(actionEvent.getSource())) {
+            String searchTerm = searchTermTextField.getText();
 
-        //Method to search items
-        updateTableSearchTerms(searchTerm);
+            //Method to search items
+            updateTableSearchTerms(searchTerm);
+        } else if (addStudentButton.equals(actionEvent.getSource())) {
+
+            try {
+                // Datos de prueba
+                Random rand = new Random();
+                int n = rand.nextInt(50) + 1;
+
+                Student student = new Student();
+                student.setName("David " + n);
+                student.setCourse("Fundamentos de Progra");
+                student.setRating("B-");
+
+                studentService.createStudent(student);
+                
+                // Llamamos otra vez al webservice para cargar lo actual
+                students = studentService.loadStudentsObjWrapper();
+                updateTableSearchTerms("");
+                
+            } catch (JsonMappingException ex) {
+                Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
     }
 
     private void updateTableSearchTerms(String searchTerm) {
@@ -88,9 +128,7 @@ public class StudentController implements ActionListener {
             }
             tableModel.setDataVector(newData, Constants.TABLE_HEADER);
         } else {
-            JOptionPane.showMessageDialog(null,
-                    "Search term is empty", "Error",
-                    JOptionPane.ERROR_MESSAGE);
+           
             tableModel.setDataVector(students, Constants.TABLE_HEADER);
         }
     }

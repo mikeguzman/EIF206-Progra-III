@@ -54,10 +54,10 @@ public class StudentService {
      */
     public Object[][] loadStudentsObjWrapper() throws JsonGenerationException,
             JsonMappingException, IOException, Exception {
-        
+
         //Student[] students = loadStudentsFromFile();
         Student[] students = loadJsonFromWebService();
-        
+
         Object[][] data = null;
 
         if (students != null && students.length > 0) {
@@ -122,5 +122,30 @@ public class StudentService {
         students = mapper.readValue(jSonFile, Student[].class);
 
         return students;
+    }
+
+    public boolean createStudent(Student student) throws JsonGenerationException,
+            JsonMappingException, IOException {
+
+        boolean isCreated = true;
+        ObjectMapper mapper = new ObjectMapper();
+
+        Client client = Client.create();
+
+        WebResource webResource = client
+                .resource(Constants.WS_URL);
+
+        String jsonInString = mapper.writeValueAsString(student);
+
+        ClientResponse response = webResource.type(MediaType.APPLICATION_JSON_TYPE)
+                .post(ClientResponse.class, jsonInString);
+
+        if (response.getStatus() != 200) {
+            isCreated = false;
+            throw new RuntimeException("Failed : HTTP error code : "
+                    + response.getStatus());
+        }
+
+        return isCreated;
     }
 }

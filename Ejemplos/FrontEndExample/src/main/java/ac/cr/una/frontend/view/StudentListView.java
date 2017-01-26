@@ -45,6 +45,7 @@ public class StudentListView extends JFrame {
 
     JTextField searchTermTextField = new JTextField(26);
     JButton filterButton = new JButton("Filter");
+    JButton addStudentButton = new JButton("Add Student");
     JTable table = new JTable();
     DefaultTableModel tableModel = new DefaultTableModel();
 
@@ -56,26 +57,30 @@ public class StudentListView extends JFrame {
      * @throws java.io.IOException
      */
     public StudentListView() throws JsonGenerationException,
-            JsonMappingException, IOException {
+            JsonMappingException, IOException, Exception {
         
         super("List of Students (MVC Demo)");
         
         searchTermTextField.setName("txtSearch");
         filterButton.setName("btnFilter");
+        addStudentButton.setName("btnAddStudent");
 
         // Create table model
         table.setName("mainTable");
         table.setModel(tableModel);
 
         // Create controller
-        StudentController controller = new StudentController(searchTermTextField, tableModel);
+        StudentController controller = new StudentController(searchTermTextField, 
+                tableModel, filterButton, addStudentButton);
         filterButton.addActionListener(controller);
+        addStudentButton.addActionListener(controller);
 
         // Set the view layout
         JPanel ctrlPane = new JPanel();
         ctrlPane.setName("ctrlPanel");
         ctrlPane.add(searchTermTextField);
         ctrlPane.add(filterButton);
+        ctrlPane.add(addStudentButton);
         
         JScrollPane tableScrollPane = new JScrollPane(table);
         tableScrollPane.setName("scrollTablePaneStudent");
