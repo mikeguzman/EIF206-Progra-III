@@ -29,7 +29,6 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import javax.ws.rs.core.MediaType;
-import org.glassfish.jersey.jsonp.JsonProcessingFeature;
 
 /**
  * Service to get the data from the service
@@ -124,6 +123,15 @@ public class StudentService {
         return students;
     }
 
+    /**
+     * Create student
+     *
+     * @param student
+     * @return
+     * @throws JsonGenerationException
+     * @throws JsonMappingException
+     * @throws IOException
+     */
     public boolean createStudent(Student student) throws JsonGenerationException,
             JsonMappingException, IOException {
 
@@ -137,6 +145,7 @@ public class StudentService {
 
         String jsonInString = mapper.writeValueAsString(student);
 
+        //POST del JSON
         ClientResponse response = webResource.type(MediaType.APPLICATION_JSON_TYPE)
                 .post(ClientResponse.class, jsonInString);
 
@@ -147,5 +156,25 @@ public class StudentService {
         }
 
         return isCreated;
+    }
+
+    public boolean deleteStudent(int id) {
+        boolean isDeleted = false;
+
+        Client client = Client.create();
+
+        WebResource webResource = client
+                .resource(Constants.WS_URL.concat("/").concat(String.valueOf(id)));
+
+        //POST del JSON
+        ClientResponse response = webResource.delete(ClientResponse.class);
+
+        if (response.getStatus() != 200) {
+            isDeleted = false;
+            throw new RuntimeException("Failed : HTTP error code : "
+                    + response.getStatus());
+        }
+
+        return isDeleted;
     }
 }

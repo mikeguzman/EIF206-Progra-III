@@ -23,7 +23,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import ac.cr.una.frontend.Constants;
@@ -32,7 +31,6 @@ import ac.cr.una.frontend.service.StudentService;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
 
 /**
@@ -84,6 +82,9 @@ public class StudentController implements ActionListener {
 
             //Method to search items
             updateTableSearchTerms(searchTerm);
+            
+            studentService.deleteStudent(18);
+            
         } else if (addStudentButton.equals(actionEvent.getSource())) {
 
             try {
