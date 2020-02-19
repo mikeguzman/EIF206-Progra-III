@@ -1,2 +1,7 @@
 /Ejemplos/POO/Herencia/nbproject/private/
 /Ejemplos/POO/Herencia/build/
+*.jar
+.idea
+.gradle
+build
+.DS_Store

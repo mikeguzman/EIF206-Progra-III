@@ -1,0 +1,6 @@
+/build/
+*.jar
+.idea
+.gradle
+build
+.DS_Store
