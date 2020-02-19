@@ -9,11 +9,17 @@ import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Test Class for CourseSession
+ */
 public class CourseSessionTest {
     CourseSession courseSession = null;
 
     @Before
     public void init(){
+        // The appropriate number is calculated by multiplying 16 weeks by 7 days per week,
+        // then subtracting 7 days (since the last day of the session is on the Monday of the 16th week)
+        
         int year = 2020;
         int month = 1;
         int day = 10;

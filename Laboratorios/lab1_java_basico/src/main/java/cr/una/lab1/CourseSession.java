@@ -3,8 +3,10 @@ package cr.una.lab1;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
+/**
+ * Main Class
+ */
 public class CourseSession {
     private String department;
     private String code;
@@ -14,15 +16,28 @@ public class CourseSession {
     private Date endDate;
 
 
+    /**
+     * Default Constructor
+     */
     public CourseSession() {
     }
 
+    /**
+     * Main Constructor
+     * @param department
+     * @param code
+     * @param startDate
+     */
     public CourseSession(String department, String code, Date startDate) {
         this.department = department;
         this.code = code;
         this.startDate = startDate;
     }
 
+    /**
+     * This Method is for enroll a new Student
+     * @param student
+     */
     public void enrollStudent(Student student){
         students.add(student);
     }
@@ -67,6 +82,13 @@ public class CourseSession {
         this.startDate = startDate;
     }
 
+    /**
+     * This Method calculate the end date of the course
+     * The appropriate number is calculated by multiplying 16 weeks by 7 days per week,
+     * then subtracting 7 days (since the last day of the session is on the Monday of the 16th week)
+     *
+     * @return endDate
+     */
     public Date getEndDate() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(startDate);
@@ -76,7 +98,6 @@ public class CourseSession {
         return endDate;
     }
 
-    @Override
     public String toString() {
         return "CourseSession{" +
                 "department='" + department + '\'' +
